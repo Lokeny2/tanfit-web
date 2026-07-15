@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TanFit – Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Additional styles specific to community page */
+    .community-hero {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: var(--white);
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .community-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .community-hero h1 span {
+      color: var(--accent);
+    }
+
+    .community-hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Stats Section */
+    .stats {
+      padding: 60px 0;
+      background: var(--white);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 20px;
+    }
+
+    .stat-item .number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+    }
+
+    .stat-item .label {
+      font-size: 1.1rem;
+      color: #666;
+      margin-top: 8px;
+    }
+
+    /* Success Stories */
+    .stories {
+      padding: 60px 0;
+      background: var(--light);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .story-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .story-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .story-card .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .story-card .name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .story-card .role {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 12px;
+    }
+
+    .story-card .story-text {
+      color: #555;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .story-card .story-text::before {
+      content: '"';
+      font-size: 2rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .story-card .story-text::after {
+      content: '"';
+      font-size: 2rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .story-card .tags {
+      margin-top: 16px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .story-card .tags span {
+      background: var(--light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    /* Member Spotlight */
+    .spotlight {
+      padding: 60px 0;
+      background: var(--white);
+    }
+
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .spotlight-card {
+      text-align: center;
+      padding: 30px 20px;
+      background: var(--light);
+      border-radius: 16px;
+      transition: transform 0.2s;
+    }
+
+    .spotlight-card:hover {
+      transform: scale(1.02);
+    }
+
+    .spotlight-card .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--secondary);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0 auto 16px;
+    }
+
+    .spotlight-card .name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--dark);
+    }
+
+    .spotlight-card .achievement {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin: 8px 0;
+    }
+
+    .spotlight-card .bio {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Community Feed Preview */
+    .feed {
+      padding: 60px 0;
+      background: var(--light);
+    }
+
+    .feed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .feed-item {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .feed-item .user {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .feed-item .time {
+      font-size: 0.8rem;
+      color: #999;
+      float: right;
+    }
+
+    .feed-item .content {
+      margin: 12px 0;
+      color: #555;
+    }
+
+    .feed-item .likes {
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .feed-item .likes span {
+      color: var(--accent);
+    }
+
+    /* Challenge Section */
+    .challenge {
+      padding: 60px 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      text-align: center;
+    }
+
+    .challenge h2 {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+
+    .challenge h2 span {
+      color: var(--accent);
+    }
+
+    .challenge p {
+      max-width: 500px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+
+    .challenge .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 30px 0;
+    }
+
+    .challenge .countdown-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 16px 24px;
+      border-radius: 12px;
+      min-width: 80px;
+    }
+
+    .challenge .countdown-item .number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    .challenge .countdown-item .label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Social Proof / CTA */
+    .social-proof {
+      padding: 60px 0;
+      background: var(--white);
+    }
+
+    .social-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    .social-proof-item {
+      padding: 20px;
+    }
+
+    .social-proof-item .icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    .social-proof-item .number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* Join Community CTA */
+    .join-cta {
+      padding: 60px 0;
+      background: var(--light);
+    }
+
+    .join-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .join-container h2 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .join-container p {
+      color: #666;
+      margin-bottom: 24px;
+    }
+
+    .join-container .btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .community-hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .challenge .countdown {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .challenge .countdown-item {
+        min-width: 60px;
+        padding: 12px 16px;
+      }
+
+      .challenge .countdown-item .number {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .community-hero {
+        padding: 40px 0;
+      }
+      .community-hero h1 {
+        font-size: 1.8rem;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .spotlight-grid {
+        grid-template-columns: 1fr;
+      }
+      .feed-grid {
+        grid-template-columns: 1fr;
+      }
+      .social-proof-grid {
+        grid-template-columns: 1fr;
+      }
+      .join-container {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container navbar">
+      <div class="logo">Tan<span>Fit</span></div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="programs.html">Programs</a>
+        <a href="community.html">Community</a>
+        <a href="#join" class="btn btn-primary">Join Community</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- COMMUNITY HERO -->
+  <section class="community-hero">
+    <div class="container">
+      <h1>Our <span>Community</span></h1>
+      <p>Join thousands of members supporting each other on their fitness journey.</p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="number">10K+</span>
+          <span class="label">Active Members</span>
+        </div>
+        <div class="stat-item">
+          <span class="number">5K+</span>
+          <span class="label">Success Stories</span>
+        </div>
+        <div class="stat-item">
+          <span class="number">50+</span>
+          <span class="label">Countries</span>
+        </div>
+        <div class="stat-item">
+          <span class="number">4.9★</span>
+          <span class="label">Average Rating</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS STORIES -->
+  <section class="stories" id="stories">
+    <div class="container">
+      <h2 class="section-title">Success Stories</h2>
+      <p class="section-subtitle">Real transformations from our community members.</p>
+      <div class="story-grid">
+        <!-- Story 1 -->
+        <div class="story-card">
+          <div class="avatar">SM</div>
+          <div class="name">Sarah Mitchell</div>
+          <div class="role">Member since 2025</div>
+          <div class="story-text">
+            TanFit completely changed my relationship with exercise and stress. I've lost 30 pounds and gained so much confidence.
+          </div>
+          <div class="tags">
+            <span>🏋️ Physical</span>
+            <span>🧘 Mental</span>
+            <span>⭐ Transform</span>
+          </div>
+        </div>
+
+        <!-- Story 2 -->
+        <div class="story-card">
+          <div class="avatar">JK</div>
+          <div class="name">James Kariuki</div>
+          <div class="role">Member since 2024</div>
+          <div class="story-text">
+            The mental wellness sessions helped me manage my anxiety. The physical workouts are tough but incredibly rewarding!
+          </div>
+          <div class="tags">
+            <span>🧘 Mental</span>
+            <span>💪 Strength</span>
+            <span>⭐ Wellness</span>
+          </div>
+        </div>
+
+        <!-- Story 3 -->
+        <div class="story-card">
+          <div class="avatar">AO</div>
+          <div class="name">Amara Okafor</div>
+          <div class="role">Member since 2026</div>
+          <div class="story-text">
+            I love the holistic approach. TanFit is not just a gym — it's a complete lifestyle upgrade.
+          </div>
+          <div class="tags">
+            <span>⚡ Holistic</span>
+            <span>🌟 Lifestyle</span>
+            <span>⭐ Transform</span>
+          </div>
+        </div>
+
+        <!-- Story 4 -->
+        <div class="story-card">
+          <div class="avatar">DM</div>
+          <div class="name">David Mwangi</div>
+          <div class="role">Member since 2024</div>
+          <div class="story-text">
+            I went from being completely inactive to running my first 5K! The community support kept me going.
+          </div>
+          <div class="tags">
+            <span>🏃 Cardio</span>
+            <span>💪 Strength</span>
+            <span>⭐ Progress</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER SPOTLIGHT -->
+  <section class="spotlight" id="spotlight">
+    <div class="container">
+      <h2 class="section-title">Member Spotlight</h2>
+      <p class="section-subtitle">Meet some of our most inspiring members.</p>
+      <div class="spotlight-grid">
+        <div class="spotlight-card">
+          <div class="avatar">RN</div>
+          <div class="name">Ruth Njoroge</div>
+          <div class="achievement">🏆 100-Day Streak</div>
+          <div class="bio">Ruth has meditated daily for 100 days straight and transformed her mental health.</div>
+        </div>
+        <div class="spotlight-card">
+          <div class="avatar">PM</div>
+          <div class="name">Peter Maina</div>
+          <div class="achievement">🏋️ Lost 50 lbs</div>
+          <div class="bio">Peter combined strength training and nutrition to achieve a complete body transformation.</div>
+        </div>
+        <div class="spotlight-card">
+          <div class="avatar">LW</div>
+          <div class="name">Lucy Wanjiru</div>
+          <div class="achievement">🧘 Mindfulness Coach</div>
+          <div class="bio">Lucy now leads meditation sessions for new members after finding peace through TanFit.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMMUNITY FEED ===== -->
+  <section class="feed" id="feed">
+    <div class="container">
+      <h2 class="section-title">Community Feed</h2>
+      <p class="section-subtitle">What our members are sharing right now.</p>
+      <div class="feed-grid">
+        <div class="feed-item">
+          <span class="user">👤 Sarah</span>
+          <span class="time">2 hours ago</span>
+          <div class="content">Just finished my morning meditation! Feeling so centered today. #TanFit #Mindfulness</div>
+          <div class="likes">❤️ <span>24</span> likes</div>
+        </div>
+        <div class="feed-item">
+          <span class="user">👤 James</span>
+          <span class="time">4 hours ago</span>
+          <div class="content">New PR on deadlifts today! 300lbs 💪 So grateful for this community.</div>
+          <div class="likes">❤️ <span>18</span> likes</div>
+        </div>
+        <div class="feed-item">
+          <span class="user">👤 Amara</span>
+          <span class="time">1 day ago</span>
+          <div class="content">Holistic transformation is real! Both my body and mind have never been stronger. #TanFit</div>
+          <div class="likes">❤️ <span>32</span> likes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHALLENGE ===== -->
+  <section class="challenge" id="challenge">
+    <div class="container">
+      <h2>Monthly <span>Challenge</span></h2>
+      <p>Join our 30-day mindfulness challenge starting soon!</p>
+      <div class="countdown">
+        <div class="countdown-item">
+          <span class="number">12</span>
+          <span class="label">Days</span>
+        </div>
+        <div class="countdown-item">
+          <span class="number">08</span>
+          <span class="label">Hours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="number">45</span>
+          <span class="label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="number">30</span>
+          <span class="label">Seconds</span>
+        </div>
+      </div>
+      <a href="#join" class="btn btn-cta">Join Challenge</a>
+    </div>
+  </section>
+
+  <!-- ===== SOCIAL PROOF ===== -->
+  <section class="social-proof">
+    <div class="container">
+      <h2 class="section-title">Trusted by Thousands</h2>
+      <p class="section-subtitle">Join a community that's growing every day.</p>
+      <div class="social-proof-grid">
+        <div class="social-proof-item">
+          <div class="icon">🏅</div>
+          <div class="number">10,000+</div>
+          <p>Members transformed</p>
+        </div>
+        <div class="social-proof-item">
+          <div class="icon">⭐</div>
+          <div class="number">4.9/5</div>
+          <p>Average rating</p>
+        </div>
+        <div class="social-proof-item">
+          <div class="icon">🌍</div>
+          <div class="number">50+</div>
+          <p>Countries</p>
+        </div>
+        <div class="social-proof-item">
+          <div class="icon">📱</div>
+          <div class="number">1M+</div>
+          <p>App downloads</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOIN COMMUNITY ===== -->
+  <section class="join-cta" id="join">
+    <div class="container">
+      <div class="join-container">
+        <h2>Join Our Community</h2>
+        <p>Connect with like-minded people on your fitness journey.</p>
+        <div class="btn-group">
+          <a href="programs.html#signup" class="btn btn-primary">Start Free Trial</a>
+          <a href="https://discord.com" target="_blank" class="btn" style="background:var(--secondary);color:#fff;">Join Discord</a>
+        </div>
+        <p style="margin-top:20px;font-size:0.9rem;color:#888;">
+          Already a member? <a href="#" style="color:var(--primary);font-weight:600;">Sign in</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="programs.html">Programs</a>
+        <a href="community.html">Community</a>
+        <a href="#join">Join Now</a>
+      </div>
+      <p>&copy; 2026 TanFit. Made with 💚 by Team TanFit.</p>
+    </div>
+  </footer>
+
+  <!-- ===== JAVASCRIPT (Countdown Timer) ===== -->
+  <script>
+    // Simple countdown timer for the challenge
+    (function() {
+      const now = new Date();
+      let targetDate = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0);
+
+      function updateCountdown() {
+        const current = new Date().getTime();
+        const target = targetDate.getTime();
+        const diff = target - current;
+
+        if (diff <= 0) {
+          // Challenge started - set new target for next month
+          targetDate = new Date(now.getFullYear(), now.getMonth() + 2, 1, 0, 0, 0);
+          updateCountdown();
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const items = document.querySelectorAll('.countdown-item .number');
+        if (items.length >= 4) {
+          items[0].textContent = String(days).padStart(2, '0');
+          items[1].textContent = String(hours).padStart(2, '0');
+          items[2].textContent = String(minutes).padStart(2, '0');
+          items[3].textContent = String(seconds).padStart(2, '0');
+        }
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
+  </script>
+</body>
+</html>
