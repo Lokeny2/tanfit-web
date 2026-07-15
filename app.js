@@ -35,3 +35,20 @@ const quotes = [
 const quoteText = document.getElementById('quoteText');
 const quoteAuthor = document.getElementById('quoteAuthor');
 let currentIndex = 0;
+
+// Simple navigation function
+function showNextQuote() {
+  currentIndex = (currentIndex + 1) % quotes.length;
+  quoteText.textContent = `“${quotes[currentIndex].text}”`;
+  quoteAuthor.textContent = `— ${quotes[currentIndex].author}`;
+}
+
+function showPrevQuote() {
+  currentIndex = (currentIndex - 1 + quotes.length) % quotes.length;
+  quoteText.textContent = `“${quotes[currentIndex].text}”`;
+  quoteAuthor.textContent = `— ${quotes[currentIndex].author}`;
+}
+
+// Event listeners
+document.getElementById('nextQuote').addEventListener('click', showNextQuote);
+document.getElementById('prevQuote').addEventListener('click', showPrevQuote);
