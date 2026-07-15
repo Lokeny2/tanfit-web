@@ -256,3 +256,100 @@ header {
   background: var(--accent);
   color: var(--dark);
 }
+
+
+/* CALL TO ACTION */
+.cta {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--white);
+  padding: 60px 0;
+  text-align: center;
+}
+.cta h2 {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+.cta p {
+  max-width: 500px;
+  margin: 0 auto 30px;
+  opacity: 0.9;
+}
+
+.btn-cta {
+  background: var(--accent);
+  color: var(--dark);
+  font-weight: 700;
+}
+.btn-cta:hover {
+  background: #e6a200;
+  transform: scale(1.02);
+}
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 40px 0 20px;
+  text-align: center;
+}
+
+.footer-links {
+  margin-bottom: 12px;
+}
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 12px;
+  transition: color 0.2s;
+}
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .quote-box blockquote {
+    font-size: 1.2rem;
+  }
+  .program-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 0;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  .quote-box {
+    padding: 24px 16px;
+  }
+  .quote-box blockquote {
+    font-size: 1rem;
+  }
+}
