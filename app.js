@@ -74,3 +74,53 @@ document.getElementById('prevQuote').addEventListener('click', function() {
 
 // Initialize with first quote
 updateQuote(0);
+
+// Keyboard navigation
+document.addEventListener('keydown', function(event) {
+  // Only respond if user is not typing in an input/textarea
+  const tag = event.target.tagName.toLowerCase();
+  if (tag === 'input' || tag === 'textarea' || tag === 'select') {
+    return;
+  }
+  
+  if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+    event.preventDefault();
+    currentIndex = (currentIndex + 1) % quotes.length;
+    quoteText.textContent = `“${quotes[currentIndex].text}”`;
+    quoteAuthor.textContent = `— ${quotes[currentIndex].author}`;
+  } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+    event.preventDefault();
+    currentIndex = (currentIndex - 1 + quotes.length) % quotes.length;
+    quoteText.textContent = `“${quotes[currentIndex].text}”`;
+    quoteAuthor.textContent = `— ${quotes[currentIndex].author}`;
+  }
+});
+
+// Focus management for buttons
+document.querySelectorAll('.quote-nav button').forEach(btn => {
+  btn.setAttribute('aria-label', 'Navigate wellness quotes');
+});
+
+
+// Auto-rotation every 7 seconds
+let autoRotateInterval = setInterval(function() {
+  currentIndex = (currentIndex + 1) % quotes.length;
+  updateQuote(currentIndex);
+}, 7000);
+
+// Pause rotation when user interacts
+document.querySelector('.quote-box').addEventListener('mouseenter', function() {
+  clearInterval(autoRotateInterval);
+});
+
+document.querySelector('.quote-box').addEventListener('mouseleave', function() {
+  autoRotateInterval = setInterval(function() {
+    currentIndex = (currentIndex + 1) % quotes.length;
+    updateQuote(currentIndex);
+  }, 7000);
+});
+
+// Pause on touch devices
+document.querySelector('.quote-box').addEventListener('touchstart', function() {
+  clearInterval(autoRotateInterval);
+});
