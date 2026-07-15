@@ -52,3 +52,25 @@ function showPrevQuote() {
 // Event listeners
 document.getElementById('nextQuote').addEventListener('click', showNextQuote);
 document.getElementById('prevQuote').addEventListener('click', showPrevQuote);
+
+
+// Function to update displayed quote
+function updateQuote(index) {
+  const quote = quotes[index];
+  quoteText.textContent = `“${quote.text}”`;
+  quoteAuthor.textContent = `— ${quote.author}`;
+}
+
+// Manual navigation
+document.getElementById('nextQuote').addEventListener('click', function() {
+  currentIndex = (currentIndex + 1) % quotes.length;
+  updateQuote(currentIndex);
+});
+
+document.getElementById('prevQuote').addEventListener('click', function() {
+  currentIndex = (currentIndex - 1 + quotes.length) % quotes.length;
+  updateQuote(currentIndex);
+});
+
+// Initialize with first quote
+updateQuote(0);
