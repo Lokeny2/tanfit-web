@@ -128,3 +128,131 @@ header {
   justify-content: center;
   flex-wrap: wrap;
 }
+
+/* SECTION TITLES */
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* PROGRAMS */
+.programs {
+  padding: 60px 0;
+  background: var(--white);
+}
+
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.program-card {
+  background: var(--light);
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.program-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.program-card .icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.program-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+.program-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.program-card .tag {
+  display: inline-block;
+  margin-top: 12px;
+  background: var(--accent);
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--dark);
+}
+
+/* WELLNESS (QUOTE CAROUSEL) */
+.wellness {
+  background: var(--secondary);
+  color: var(--white);
+  padding: 60px 0;
+}
+.wellness .section-title {
+  color: var(--white);
+}
+.wellness .section-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.quote-box {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 40px 30px;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.quote-box blockquote {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.quote-box cite {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 8px;
+}
+
+.quote-nav {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.quote-nav button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: var(--white);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.quote-nav button:hover {
+  background: var(--accent);
+  color: var(--dark);
+}
