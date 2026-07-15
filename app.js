@@ -181,3 +181,57 @@ document.addEventListener('keydown', function(event) {
 setTimeout(() => {
   updateQuoteWithAnimation(0);
 }, 100);
+
+// Save current quote index to session storage
+function saveCurrentQuote(index) {
+  try {
+    sessionStorage.setItem('tanfit-current-quote', index);
+  } catch (e) {
+    
+  }
+}
+
+// Load saved quote index
+function loadSavedQuote() {
+  try {
+    const saved = sessionStorage.getItem('tanfit-current-quote');
+    if (saved !== null) {
+      const index = parseInt(saved, 10);
+      if (index >= 0 && index < quotes.length) {
+        return index;
+      }
+    }
+  } catch (e) {
+    
+  }
+  return 0;
+}
+
+// Override initialization with saved quote
+function initQuoteCarousel() {
+  const savedIndex = loadSavedQuote();
+  currentIndex = savedIndex;
+  updateQuote(currentIndex);
+  
+  // Save current index when navigation occurs
+  document.getElementById('nextQuote').addEventListener('click', function() {
+    saveCurrentQuote(currentIndex);
+  });
+  
+  document.getElementById('prevQuote').addEventListener('click', function() {
+    saveCurrentQuote(currentIndex);
+  });
+}
+
+// Enhanced update function with save
+const originalUpdate = updateQuote;
+updateQuote = function(index) {
+  originalUpdate(index);
+  saveCurrentQuote(index);
+};
+
+initQuoteCarousel();
+
+// Console welcome message
+console.log('🧘 TanFit Wellness Carousel loaded!');
+console.log(`📚 ${quotes.length} quotes available for inspiration.`);
