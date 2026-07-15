@@ -124,3 +124,60 @@ document.querySelector('.quote-box').addEventListener('mouseleave', function() {
 document.querySelector('.quote-box').addEventListener('touchstart', function() {
   clearInterval(autoRotateInterval);
 });
+
+// Enhanced update with animation
+function updateQuoteWithAnimation(index) {
+  const quoteBox = document.querySelector('.quote-box');
+  
+  // Fade out
+  quoteBox.style.transition = 'opacity 0.3s ease';
+  quoteBox.style.opacity = '0';
+  
+  setTimeout(() => {
+    // Update content
+    const quote = quotes[index];
+    quoteText.textContent = `“${quote.text}”`;
+    quoteAuthor.textContent = `— ${quote.author}`;
+    
+    // Fade in
+    quoteBox.style.opacity = '1';
+  }, 300);
+}
+
+// Override navigation to use animation
+function navigateQuote(direction) {
+  if (direction === 'next') {
+    currentIndex = (currentIndex + 1) % quotes.length;
+  } else if (direction === 'prev') {
+    currentIndex = (currentIndex - 1 + quotes.length) % quotes.length;
+  }
+  updateQuoteWithAnimation(currentIndex);
+}
+
+// Update event listeners to use animated navigation
+document.getElementById('nextQuote').onclick = function() {
+  navigateQuote('next');
+};
+
+document.getElementById('prevQuote').onclick = function() {
+  navigateQuote('prev');
+};
+
+// Keyboard support with animation
+document.addEventListener('keydown', function(event) {
+  const tag = event.target.tagName.toLowerCase();
+  if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+  
+  if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+    event.preventDefault();
+    navigateQuote('next');
+  } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+    event.preventDefault();
+    navigateQuote('prev');
+  }
+});
+
+// Initial display with animation
+setTimeout(() => {
+  updateQuoteWithAnimation(0);
+}, 100);
