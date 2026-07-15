@@ -100,3 +100,27 @@ document.addEventListener('keydown', function(event) {
 document.querySelectorAll('.quote-nav button').forEach(btn => {
   btn.setAttribute('aria-label', 'Navigate wellness quotes');
 });
+
+
+// Auto-rotation every 7 seconds
+let autoRotateInterval = setInterval(function() {
+  currentIndex = (currentIndex + 1) % quotes.length;
+  updateQuote(currentIndex);
+}, 7000);
+
+// Pause rotation when user interacts
+document.querySelector('.quote-box').addEventListener('mouseenter', function() {
+  clearInterval(autoRotateInterval);
+});
+
+document.querySelector('.quote-box').addEventListener('mouseleave', function() {
+  autoRotateInterval = setInterval(function() {
+    currentIndex = (currentIndex + 1) % quotes.length;
+    updateQuote(currentIndex);
+  }, 7000);
+});
+
+// Pause on touch devices
+document.querySelector('.quote-box').addEventListener('touchstart', function() {
+  clearInterval(autoRotateInterval);
+});
