@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TanFit – Programs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Additional styles specific to programs page */
+    .programs-hero {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .programs-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .programs-hero h1 span {
+      color: var(--accent);
+    }
+
+    .programs-hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    .program-detail {
+      padding: 60px 0;
+      background: var(--white);
+    }
+
+    .program-detail:nth-child(even) {
+      background: var(--light);
+    }
+
+    .program-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .program-detail-content h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .program-detail-content h2 .icon {
+      margin-right: 12px;
+    }
+
+    .program-detail-content p {
+      color: #555;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .program-detail-content ul {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .program-detail-content ul li {
+      padding: 8px 0;
+      padding-left: 28px;
+      position: relative;
+      color: #444;
+    }
+
+    .program-detail-content ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .program-detail-image {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 60px 40px;
+      text-align: center;
+      font-size: 6rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pricing {
+      background: var(--secondary);
+      color: var(--white);
+      padding: 60px 0;
+    }
+
+    .pricing .section-title {
+      color: var(--white);
+    }
+
+    .pricing .section-subtitle {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      color: var(--dark);
+      border-radius: 16px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .pricing-card.popular {
+      border: 3px solid var(--accent);
+    }
+
+    .pricing-card .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--dark);
+      padding: 4px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .pricing-card .price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin: 16px 0;
+    }
+
+    .pricing-card .price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #888;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .pricing-card ul li {
+      padding: 6px 0;
+      padding-left: 28px;
+      position: relative;
+      color: #555;
+    }
+
+    .pricing-card ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .pricing-card .btn {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    /* CTA Section (reused from homepage) */
+    .cta {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      max-width: 500px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+
+    /* Form Section */
+    .signup-form {
+      padding: 60px 0;
+      background: var(--light);
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .form-container p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-group .btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .program-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .programs-hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 40px auto 0;
+      }
+
+      .form-container {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .programs-hero {
+        padding: 40px 0;
+      }
+      .programs-hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container navbar">
+      <div class="logo">Tan<span>Fit</span></div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="programs.html">Programs</a>
+        <a href="community.html">Community</a>
+        <a href="#signup" class="btn btn-primary">Join Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PROGRAMS HERO -->
+  <section class="programs-hero">
+    <div class="container">
+      <h1>Choose Your <span>Path</span></h1>
+      <p>Explore our comprehensive programs designed to transform both your body and mind.</p>
+    </div>
+  </section>
+
+  <!-- PHYSICAL PROGRAM -->
+  <section class="program-detail" id="physical">
+    <div class="container">
+      <div class="program-detail-grid">
+        <div class="program-detail-content">
+          <h2><span class="icon">🏋️</span>Strength &amp; Cardio</h2>
+          <p>Our science-backed physical training program is designed to help you build muscle, boost endurance, and achieve your fitness goals.</p>
+          <ul>
+            <li>Customized workout plans for all levels</li>
+            <li>Progressive overload training system</li>
+            <li>Nutrition guidance and meal planning</li>
+            <li>Weekly progress tracking</li>
+            <li>Access to our fitness community</li>
+          </ul>
+          <a href="#signup" class="btn btn-primary">Start Training</a>
+        </div>
+        <div class="program-detail-image">
+          💪
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MENTAL PROGRAM ===== -->
+  <section class="program-detail" id="mental">
+    <div class="container">
+      <div class="program-detail-grid">
+        <div class="program-detail-image">
+          🧘
+        </div>
+        <div class="program-detail-content">
+          <h2><span class="icon">🧘</span>Mindfulness &amp; Meditation</h2>
+          <p>Reduce stress, improve focus, and find inner peace with our guided mental wellness program.</p>
+          <ul>
+            <li>Guided meditation sessions</li>
+            <li>Breathing exercises and techniques</li>
+            <li>Stress management strategies</li>
+            <li>Sleep improvement methods</li>
+            <li>Daily mindfulness practices</li>
+          </ul>
+          <a href="#signup" class="btn btn-primary">Start Meditating</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOLISTIC PROGRAM -->
+  <section class="program-detail" id="holistic">
+    <div class="container">
+      <div class="program-detail-grid">
+        <div class="program-detail-content">
+          <h2><span class="icon">⚡</span>Holistic Transformation</h2>
+          <p>The ultimate combination of physical training and mental wellness for complete life transformation.</p>
+          <ul>
+            <li>Integrated physical + mental approach</li>
+            <li>Personalized transformation plan</li>
+            <li>1-on-1 coaching sessions</li>
+            <li>Monthly progress assessments</li>
+            <li>Lifetime access to all resources</li>
+          </ul>
+          <a href="#signup" class="btn btn-primary">Transform Now</a>
+        </div>
+        <div class="program-detail-image">
+          🌟
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2 class="section-title">Choose Your Plan</h2>
+      <p class="section-subtitle">Flexible pricing options to fit your journey.</p>
+      <div class="pricing-grid">
+        <!-- Basic -->
+        <div class="pricing-card">
+          <h3>Basic</h3>
+          <div class="price">$19 <span>/mo</span></div>
+          <ul>
+            <li>Access to all programs</li>
+            <li>Community support</li>
+            <li>Weekly resources</li>
+            <li>Email support</li>
+          </ul>
+          <a href="#signup" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <!-- Popular -->
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <h3>Pro</h3>
+          <div class="price">$49 <span>/mo</span></div>
+          <ul>
+            <li>Everything in Basic</li>
+            <li>1-on-1 coaching</li>
+            <li>Customized plans</li>
+            <li>Priority support</li>
+            <li>Monthly progress reviews</li>
+          </ul>
+          <a href="#signup" class="btn btn-primary">Go Pro</a>
+        </div>
+
+        <!-- Premium -->
+        <div class="pricing-card">
+          <h3>Premium</h3>
+          <div class="price">$99 <span>/mo</span></div>
+          <ul>
+            <li>Everything in Pro</li>
+            <li>Unlimited coaching</li>
+            <li>Lifetime access</li>
+            <li>Exclusive community</li>
+            <li>Personalized nutrition plan</li>
+          </ul>
+          <a href="#signup" class="btn btn-primary">Go Premium</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGN-UP FORM -->
+  <section class="signup-form" id="signup">
+    <div class="container">
+      <div class="form-container">
+        <h2>Start Your Journey Today</h2>
+        <p>Join TanFit and transform your body and mind.</p>
+        <form id="signupForm" onsubmit="return handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required />
+          </div>
+          <div class="form-group">
+            <label for="program">Choose Program</label>
+            <select id="program" required>
+              <option value="">Select a program</option>
+              <option value="physical">Strength &amp; Cardio</option>
+              <option value="mental">Mindfulness &amp; Meditation</option>
+              <option value="holistic">Holistic Transformation</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message (Optional)</label>
+            <textarea id="message" placeholder="Tell us about your goals..."></textarea>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Join TanFit</button>
+          </div>
+        </form>
+        <div id="formMessage" style="text-align:center;margin-top:16px;display:none;padding:12px;border-radius:8px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Transform Your Life?</h2>
+      <p>Join thousands of members who've already started their journey.</p>
+      <a href="#signup" class="btn btn-cta">Sign Up Now</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="programs.html">Programs</a>
+        <a href="community.html">Community</a>
+        <a href="#signup">Join Now</a>
+      </div>
+      <p>&copy; 2026 TanFit. Made with 💚 by Team TanFit.</p>
+    </div>
+  </footer>
+
+  <!-- Form Handler -->
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const program = document.getElementById('program').value;
+      const message = document.getElementById('message').value;
+
+      // Simple validation
+      if (!name || !email || !program) {
+        showMessage('Please fill in all required fields.', 'error');
+        return false;
+      }
+
+      // Show success message
+      const programNames = {
+        'physical': 'Strength & Cardio',
+        'mental': 'Mindfulness & Meditation',
+        'holistic': 'Holistic Transformation'
+      };
+      showMessage(
+        `Thank you ${name}! You've been enrolled in ${programNames[program]}. We'll send details to ${email}. 🎉`,
+        'success'
+      );
+      document.getElementById('signupForm').reset();
+      return false;
+    }
+
+    function showMessage(msg, type) {
+      const el = document.getElementById('formMessage');
+      el.textContent = msg;
+      el.style.display = 'block';
+      el.style.backgroundColor = type === 'success' ? '#d4edda' : '#f8d7da';
+      el.style.color = type === 'success' ? '#155724' : '#721c24';
+      el.style.border = type === 'success' ? '2px solid #c3e6cb' : '2px solid #f5c6cb';
+    }
+  </script>
+</body>
+</html>
